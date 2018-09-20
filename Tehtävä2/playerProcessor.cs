@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 
 namespace Tehtävä2
 {
+    
     public class playerProcessor
     {
 

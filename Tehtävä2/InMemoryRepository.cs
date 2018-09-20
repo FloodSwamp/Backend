@@ -29,7 +29,6 @@ namespace Tehtävä2
             if (found != null) {
                 playerList.Remove(found);
             }
-
             return found;
 
         }
@@ -37,7 +36,6 @@ namespace Tehtävä2
         public async Task<player> Get(Guid id)
         {
             player found = null;
-
             foreach (player p in playerList) {
                 if (p.Id == id) {
                     found = p;
@@ -46,14 +44,11 @@ namespace Tehtävä2
             }
 
             return found;
-
         }
 
         public async Task<player[]> GetAll()
         {
-
             return playerList.ToArray();
-
         }
 
         public async Task<player> Modify(Guid id, ModifiedPlayer player)
@@ -70,8 +65,68 @@ namespace Tehtävä2
             if (found != null) {
                 found.Score = player.Score;
             }
-
             return found;
+        }
+     private Item GetItemById(Guid playerid, Guid itemid) 
+        {
+            Player player = GetPlayerById(playerid);
+            foreach (Item item in player.items)
+            {
+                if (item.Id == itemid)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
+
+        public async Task<Item> CreateItem(Guid playerid, Item item)
+        {
+            await Task.CompletedTask;
+            Player player = GetPlayerById(playerid);
+            player.items.Add(item);
+            return item;
+        }
+
+        public async Task<Item> GetItem(Guid playerid, Guid itemid)
+        {
+            await Task.CompletedTask;
+            Item item = GetItemById(playerid, itemid);
+            return item;
+        }
+
+        public async Task<Item[]> GetAllItems(Guid playerid)
+        {
+            await Task.CompletedTask;
+            Player player = GetPlayerById(playerid);
+            return player.items.ToArray();
+        }
+
+        public async Task<Item> ModifyItem(Guid playerid, Guid itemid, ModifiedItem item)
+        {
+            await Task.CompletedTask;
+            Item found = GetItemById(playerid, itemid);
+            if (found != null)
+            {
+                found.Level = item.Level;
+            }
+            return found;
+        }
+
+        public async Task<Item> DeleteItem(Guid playerid, Guid itemid)
+        {
+            await Task.CompletedTask;
+            Item found = GetItemById(playerid, itemid);
+            Player player = GetPlayerById(playerid);
+            if (found != null)
+            {
+                player.items.Remove(found);
+                return found;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }
