@@ -1,9 +1,12 @@
 using System;
+using System.Collections.Generic;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace Tehtävä2
 {
-    public class player
+    public class Player
     {
+        [BsonId]
         public Guid Id { get; set; }
         public string Name { get; set; }
         public int Score { get; set; }

@@ -17,26 +17,26 @@ namespace Tehtävä2
         playerProcessor pros;
 
         [HttpGet("{id}")]
-        public Task<player> Get(Guid id) {
+        public Task<Player> Get(Guid id) {
             return pros.Get(id);
         }
 
         [HttpGet]
-        public Task<player[]> GetAll(){
+        public Task<Player[]> GetAll(){
             return pros.GetAll();
         }
 
         [HttpPost]
-        public Task<player> Create([FromBody] newplayer player){
+        public Task<Player> Create([FromBody] newplayer player){
             return pros.Create(player);
         }
         [HttpPut("{id}")]
-        public Task<player> Modify(Guid id, [FromBody] ModifiedPlayer player){
+        public Task<Player> Modify(Guid id, [FromBody] ModifiedPlayer player){
             return pros.Modify(id, player);
         }
 
         [HttpDelete("{id}")]
-        public Task<player> Delete(Guid id){
+        public Task<Player> Delete(Guid id){
             return pros.Delete(id);
         }
     }

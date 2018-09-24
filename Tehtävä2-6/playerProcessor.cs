@@ -12,14 +12,14 @@ namespace Tehtävä2
         }
 
         iRepository repo;
-        public Task<player> Get(Guid id) {
+        public Task<Player> Get(Guid id) {
             return repo.Get(id);
         }
-        public Task<player[]> GetAll() {
+        public Task<Player[]> GetAll() {
             return repo.GetAll();
         }
-        public Task<player> Create(newplayer player){
-            player p = new player();
+        public Task<Player> Create(newplayer player){
+            Player p = new Player();
             p.Name = player.Name;
             p.Id = Guid.NewGuid();
             p.IsBanned = false;
@@ -27,10 +27,10 @@ namespace Tehtävä2
             p.CreationTime = DateTime.Now;
             return repo.Create(p);
         }
-        public Task<player> Modify(Guid id, ModifiedPlayer player){
+        public Task<Player> Modify(Guid id, ModifiedPlayer player){
             return repo.Modify(id, player);
         }
-        public Task<player> Delete(Guid id){
+        public Task<Player> Delete(Guid id){
             return repo.Delete(id);
         }
     }

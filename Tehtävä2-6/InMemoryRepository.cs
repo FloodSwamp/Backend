@@ -7,19 +7,19 @@ namespace Tehtävä2
     public class InMemoryRepository : iRepository
     {
 
-        List<player> playerList = new List<player>();
-        public async Task<player> Create(player player)
+        List<Player> playerList = new List<Player>();
+        public async Task<Player> Create(Player player)
         {
             playerList.Add(player);
             return player;
         }
 
-        public async Task<player> Delete(Guid id)
+        public async Task<Player> Delete(Guid id)
         {
 
             player found = null;
 
-            foreach (player p in playerList) {
+            foreach (Player p in playerList) {
                 if (p.Id == id) {
                     found = p;
                     break;
@@ -33,10 +33,10 @@ namespace Tehtävä2
 
         }
 
-        public async Task<player> Get(Guid id)
+        public async Task<Player> Get(Guid id)
         {
-            player found = null;
-            foreach (player p in playerList) {
+            Player found = null;
+            foreach (Player p in playerList) {
                 if (p.Id == id) {
                     found = p;
                     break;
@@ -46,16 +46,16 @@ namespace Tehtävä2
             return found;
         }
 
-        public async Task<player[]> GetAll()
+        public async Task<Player[]> GetAll()
         {
             return playerList.ToArray();
         }
 
-        public async Task<player> Modify(Guid id, ModifiedPlayer player)
+        public async Task<Player> Modify(Guid id, ModifiedPlayer player)
         {
-            player found = null;
+            Player found = null;
 
-            foreach (player p in playerList) {
+            foreach (Player p in playerList) {
                 if (p.Id == id) {
                     found = p;
                     break;
