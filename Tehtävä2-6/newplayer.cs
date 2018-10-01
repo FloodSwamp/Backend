@@ -11,5 +11,7 @@ namespace Tehtävä2
         public static implicit operator newplayer(string player) {
             return new newplayer(player);
         }
+
+        public string Tag {get;set;}
     }
 }

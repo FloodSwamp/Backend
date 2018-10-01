@@ -13,5 +13,6 @@ namespace Tehtävä2
         public bool IsBanned { get; set; }
         public DateTime CreationTime { get; set; }
         public List <Item> items { get; set; }
+        public string Tag {get; set;}
     }
 }

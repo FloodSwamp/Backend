@@ -21,9 +21,19 @@ namespace Tehtävä2
             return pros.Get(id);
         }
 
+        [HttpGet("{name}")]
+        public Task<Player> GetName(string name){
+            return pros.GetName(name);
+        }
+
         [HttpGet]
         public Task<Player[]> GetAll(){
             return pros.GetAll();
+        }
+
+        [HttpGet("tag{tag}")]
+        public Task<Player[]> GetAllTags(){
+            return pros.GetAllTags();
         }
 
         [HttpPost]
@@ -38,6 +48,11 @@ namespace Tehtävä2
         [HttpDelete("{id}")]
         public Task<Player> Delete(Guid id){
             return pros.Delete(id);
+        }
+
+        [HttpPut("{id}/name")]
+        public Task<Player> UpdateName(Guid id, [FromBody] UpdatedPlayerName player){
+            return pros.UpdatePlayerName(id, player);
         }
     }
 }

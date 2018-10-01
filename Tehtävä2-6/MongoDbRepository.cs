@@ -41,9 +41,24 @@ namespace Tehtävä2_6
             return player;
         }
 
+        public async Task<Player> GetByName(string name) {
+            var filter = Builders<Player>.Filter.Eq("Name", name);
+            var cursor = await collection.FindAsync(filter);
+            Player player = cursor.Single();
+            return player;
+        }
+
         public async Task<Player[]> GetAllPlayer()
         {
             var filter = Builders<Player>.Filter.Empty;
+            var cursor = await coll.FindAsync(filter);
+            Player[] player = cursor.ToList().ToArray();
+            return player;
+        }
+
+        public async Task<Player[]> GetAllTags()
+        {
+            var filter = Builders<Player>.Filter.Eq("Tag", tag);
             var cursor = await coll.FindAsync(filter);
             Player[] player = cursor.ToList().ToArray();
             return player;
@@ -53,6 +68,14 @@ namespace Tehtävä2_6
         {
             var filter = Builders<Player>.Filter.Eq("Id", id);
             var update = Builders<Player>.Update.Set("Score", player.Score);
+            var player2 = await coll.FindOneAndUpdateAsync(filter, update);
+            return player2;
+        }
+
+        public async Task<Player> UpdatePlayerName(Guid id, UpdatedPlayerName player)
+        {
+            var filter = Builders<Player>.Filter.Eq("Id", id);
+            var update = Builders<Player>.Update.Set("Name", player.UpdatedName);
             var player2 = await coll.FindOneAndUpdateAsync(filter, update);
             return player2;
         }
